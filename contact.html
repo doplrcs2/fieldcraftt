@@ -127,7 +127,6 @@
   var error = document.getElementById('form-error');
   var invalid = document.getElementById('form-invalid');
   var button = form.querySelector('button[type="submit"]');
-  var SUBMIT_URL = 'https://api.web3forms.com/submit';
   var CONFIG_URL = '/api/contact-config';
 
   function showSuccess() {
@@ -142,6 +141,18 @@
   function resetButton() {
     button.disabled = false;
     button.firstChild.textContent = 'Send inquiry ';
+  }
+
+  function ensureHidden(name, value) {
+    var el = form.elements[name];
+    if (!el) {
+      el = document.createElement('input');
+      el.type = 'hidden';
+      el.name = name;
+      form.appendChild(el);
+    }
+    el.value = value;
+    return el;
   }
 
   if (new URLSearchParams(location.search).get('sent') === '1') showSuccess();
@@ -168,29 +179,19 @@
     button.disabled = true;
     button.firstChild.textContent = 'Sending ';
 
+    // Native POST + redirect avoids CORS (Web3Forms free tier blocks browser fetch CORS
+    // and server-side API calls). Success lands back on ?sent=1.
     fetch(CONFIG_URL, { headers: { Accept: 'application/json' } })
       .then(function (r) { return r.json().then(function (data) { return { ok: r.ok, data: data }; }); })
       .then(function (cfg) {
         if (!cfg.ok || !cfg.data || !cfg.data.configured || !cfg.data.access_key) {
           throw new Error('not-configured');
         }
-        // FormData (not JSON) avoids a CORS preflight that api.web3forms.com rejects.
-        var fd = new FormData();
-        fd.append('access_key', cfg.data.access_key);
-        fd.append('subject', form.elements.subject.value);
-        fd.append('from_name', form.elements.from_name.value);
-        fd.append('name', form.elements.name.value);
-        fd.append('email', form.elements.email.value);
-        fd.append('company', form.elements.company.value);
-        fd.append('timing', form.elements.timing.value);
-        fd.append('service', form.elements.service.value);
-        fd.append('message', form.elements.message.value);
-        return fetch(SUBMIT_URL, { method: 'POST', body: fd })
-          .then(function (r) { return r.json().then(function (data) { return { ok: r.ok, data: data }; }); });
-      })
-      .then(function (res) {
-        if (!res.ok || !res.data || res.data.success !== true) throw res.data || res;
-        showSuccess();
+        ensureHidden('access_key', cfg.data.access_key);
+        ensureHidden('redirect', new URL(location.pathname + '?sent=1', location.href).href);
+        form.setAttribute('action', 'https://api.web3forms.com/submit');
+        form.setAttribute('method', 'POST');
+        form.submit();
       })
       .catch(function () {
         error.hidden = false;
