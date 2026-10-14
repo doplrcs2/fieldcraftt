@@ -87,7 +87,7 @@ ul,ol{padding:0;list-style:none}
 
 /* Intro + field notes */
 .about-grid{display:grid;gap:16px}
-.portrait{max-width:420px;display:flex;flex-direction:column;gap:22px}
+.portrait{max-width:420px;display:flex;flex-direction:column;gap:32px}
 .portrait img{width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;background:var(--stone)}
 .about-copy h2{font-family:var(--display);font-weight:600;font-size:clamp(1.875rem,4.4vw,3.25rem);line-height:1.08;letter-spacing:-.015em}
 .about-copy h2 span{display:block}
