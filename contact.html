@@ -174,25 +174,20 @@
         if (!cfg.ok || !cfg.data || !cfg.data.configured || !cfg.data.access_key) {
           throw new Error('not-configured');
         }
-        var payload = {
-          access_key: cfg.data.access_key,
-          subject: form.elements.subject.value,
-          from_name: form.elements.from_name.value,
-          name: form.elements.name.value,
-          email: form.elements.email.value,
-          company: form.elements.company.value,
-          timing: form.elements.timing.value,
-          service: form.elements.service.value,
-          message: form.elements.message.value,
-          botcheck: false
-        };
-        return fetch(SUBMIT_URL, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-          body: JSON.stringify(payload)
-        });
+        // FormData (not JSON) avoids a CORS preflight that api.web3forms.com rejects.
+        var fd = new FormData();
+        fd.append('access_key', cfg.data.access_key);
+        fd.append('subject', form.elements.subject.value);
+        fd.append('from_name', form.elements.from_name.value);
+        fd.append('name', form.elements.name.value);
+        fd.append('email', form.elements.email.value);
+        fd.append('company', form.elements.company.value);
+        fd.append('timing', form.elements.timing.value);
+        fd.append('service', form.elements.service.value);
+        fd.append('message', form.elements.message.value);
+        return fetch(SUBMIT_URL, { method: 'POST', body: fd })
+          .then(function (r) { return r.json().then(function (data) { return { ok: r.ok, data: data }; }); });
       })
-      .then(function (r) { return r.json().then(function (data) { return { ok: r.ok, data: data }; }); })
       .then(function (res) {
         if (!res.ok || !res.data || res.data.success !== true) throw res.data || res;
         showSuccess();
