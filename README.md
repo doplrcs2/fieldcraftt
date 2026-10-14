@@ -18,9 +18,17 @@ vercel.json     Static hosting config (cleanUrls, no trailing slash)
 
 No framework build step — HTML/CSS only.
 
-## FormSubmit
+## Contact form (Web3Forms)
 
-The contact form posts to [FormSubmit](https://formsubmit.co) (`jimmy@fieldcraftt.com`). No FormSubmit account is required. The first real submission sends a one-time activation email to that address; confirm it before inquiries will be delivered. Fallback: `mailto:jimmy@fieldcraftt.com`.
+The contact form submits via client AJAX to [Web3Forms](https://web3forms.com) → `jimmy@fieldcraftt.com`.
+
+**Required Vercel env (Production):** `WEB3FORMS_ACCESS_KEY`
+
+1. Create a key at https://web3forms.com for `jimmy@fieldcraftt.com` (confirm the email).
+2. In Vercel → project `fieldcraftt` → Settings → Environment Variables, add `WEB3FORMS_ACCESS_KEY` = that UUID (Production).
+3. Redeploy (or wait for the next push). The page loads the key from `/api/contact-config` — it is meant to be public client-side.
+
+FormSubmit was removed: its AJAX endpoint is Cloudflare-challenged (`403`) and broke the on-page success UX. Fallback: `mailto:jimmy@fieldcraftt.com`.
 
 ## Domains
 

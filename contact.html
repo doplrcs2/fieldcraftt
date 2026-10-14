@@ -47,19 +47,17 @@
 
       <div class="contact-panel">
         <!--
-          Static-host form backend: FormSubmit (https://formsubmit.co), no account needed.
-          The first submission sends a one-time activation email to jimmy@fieldcraftt.com; confirm it to start receiving inquiries.
-          To switch to Formspree or Netlify Forms later, change the form action (and the AJAX endpoint in the script below);
-          the field names can stay as they are.
+          Form backend: Web3Forms (https://web3forms.com) via client AJAX.
+          Access key comes from Vercel env WEB3FORMS_ACCESS_KEY through /api/contact-config
+          (key is designed to be public client-side). Destination: jimmy@fieldcraftt.com.
+          FormSubmit was retired — its AJAX endpoint is Cloudflare-challenged (403) from browsers.
         -->
-        <form class="inquiry" id="inquiry" action="https://formsubmit.co/jimmy@fieldcraftt.com" method="POST" novalidate>
-          <input type="hidden" name="_subject" value="FIELDCRAFTT inquiry">
-          <input type="hidden" name="_captcha" value="false">
-          <input type="hidden" name="_template" value="table">
-          <input type="hidden" name="_next" value="">
+        <form class="inquiry" id="inquiry" action="https://api.web3forms.com/submit" method="POST" novalidate>
+          <input type="hidden" name="subject" value="FIELDCRAFTT inquiry">
+          <input type="hidden" name="from_name" value="FIELDCRAFTT site">
           <div class="hp" aria-hidden="true">
             <label for="f-honey">Leave this field empty</label>
-            <input type="text" id="f-honey" name="_honey" tabindex="-1" autocomplete="off">
+            <input type="checkbox" id="f-honey" name="botcheck" tabindex="-1" autocomplete="off">
           </div>
 
           <div class="field-row">
@@ -129,15 +127,23 @@
   var error = document.getElementById('form-error');
   var invalid = document.getElementById('form-invalid');
   var button = form.querySelector('button[type="submit"]');
-  var AJAX_ENDPOINT = 'https://formsubmit.co/ajax/jimmy@fieldcraftt.com';
+  var SUBMIT_URL = 'https://api.web3forms.com/submit';
+  var CONFIG_URL = '/api/contact-config';
 
   function showSuccess() {
     form.hidden = true;
     success.hidden = false;
     success.focus();
+    if (history.replaceState) {
+      history.replaceState(null, '', location.pathname + '?sent=1');
+    }
   }
 
-  form.elements._next.value = new URL('contact.html?sent=1', location.href).href;
+  function resetButton() {
+    button.disabled = false;
+    button.firstChild.textContent = 'Send inquiry ';
+  }
+
   if (new URLSearchParams(location.search).get('sent') === '1') showSuccess();
 
   form.addEventListener('submit', function (e) {
@@ -154,19 +160,46 @@
       if (firstInvalid) firstInvalid.focus();
       return;
     }
-    if (form.elements._honey.value) return;
+    // Web3Forms honeypot: bots that check the box are dropped silently.
+    if (form.elements.botcheck && form.elements.botcheck.checked) {
+      showSuccess();
+      return;
+    }
     button.disabled = true;
     button.firstChild.textContent = 'Sending ';
-    fetch(AJAX_ENDPOINT, { method: 'POST', headers: { Accept: 'application/json' }, body: new FormData(form) })
-      .then(function (r) { return r.ok ? r.json() : Promise.reject(r); })
-      .then(function (data) {
-        if (String(data.success) !== 'true') throw data;
+
+    fetch(CONFIG_URL, { headers: { Accept: 'application/json' } })
+      .then(function (r) { return r.json().then(function (data) { return { ok: r.ok, data: data }; }); })
+      .then(function (cfg) {
+        if (!cfg.ok || !cfg.data || !cfg.data.configured || !cfg.data.access_key) {
+          throw new Error('not-configured');
+        }
+        var payload = {
+          access_key: cfg.data.access_key,
+          subject: form.elements.subject.value,
+          from_name: form.elements.from_name.value,
+          name: form.elements.name.value,
+          email: form.elements.email.value,
+          company: form.elements.company.value,
+          timing: form.elements.timing.value,
+          service: form.elements.service.value,
+          message: form.elements.message.value,
+          botcheck: false
+        };
+        return fetch(SUBMIT_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+          body: JSON.stringify(payload)
+        });
+      })
+      .then(function (r) { return r.json().then(function (data) { return { ok: r.ok, data: data }; }); })
+      .then(function (res) {
+        if (!res.ok || !res.data || res.data.success !== true) throw res.data || res;
         showSuccess();
       })
       .catch(function () {
         error.hidden = false;
-        button.disabled = false;
-        button.firstChild.textContent = 'Send inquiry ';
+        resetButton();
       });
   });
 })();
