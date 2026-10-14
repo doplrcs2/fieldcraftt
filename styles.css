@@ -46,11 +46,9 @@ ul,ol{padding:0;list-style:none}
 .brand .mark{width:auto;height:26px}
 .brand .wordmark{width:auto;height:13px}
 .nav{grid-column:1/-1;display:flex;gap:24px;align-items:center;height:44px;border-top:1px solid var(--line-dark)}
-.nav a,.nav .soon{font-family:var(--mono);font-size:.6875rem;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;padding:6px 0;border-bottom:1px solid transparent}
+.nav a{font-family:var(--mono);font-size:.6875rem;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;padding:6px 0;border-bottom:1px solid transparent}
 .nav a:hover{border-color:currentColor}
 .nav a[aria-current="page"]{border-color:var(--ember)}
-.nav .soon{color:var(--ash);cursor:default}
-.nav .soon small{font-size:.5625rem;letter-spacing:.1em;margin-left:6px;padding:2px 5px;border:1px solid rgba(168,168,168,.5)}
 .header-cta{grid-column:2;grid-row:1;min-height:38px;padding:9px 14px}
 .nav .nav-contact{display:none}
 .cta-long{display:none}
@@ -224,7 +222,7 @@ ul,ol{padding:0;list-style:none}
   .brand .mark{height:30px}
   .brand .wordmark{height:15px}
   .nav{grid-column:2;grid-row:1;justify-self:end;border:0;height:auto;gap:36px;margin-right:12px}
-  .nav a,.nav .soon{font-size:.75rem}
+  .nav a{font-size:.75rem}
   .nav .nav-contact{display:inline}
   .cta-short{display:none}
   .cta-long{display:inline}
