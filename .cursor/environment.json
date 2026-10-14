@@ -1,0 +1,4 @@
+{
+  "install": "test -f index.html\ntest -f contact.html\ntest -f styles.css\ntest -f vercel.json\ntest -f api/contact-config.js\ntest -d assets",
+  "start": "exec python3 -m http.server 3000 --bind 0.0.0.0"
+}
