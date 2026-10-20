@@ -110,9 +110,9 @@ ul,ol{padding:0;list-style:none}
 .notes{display:grid;grid-template-columns:1fr}
 .note{display:flex;flex-direction:column;justify-content:center;align-items:center;gap:10px;text-align:center;padding:28px 0}
 .note + .note{border-top:1px solid var(--stone)}
-.note-logo{display:flex;align-items:center;justify-content:center;height:36px;margin-bottom:8px;color:var(--black);opacity:.5}
+.note-logo{display:flex;align-items:center;justify-content:center;height:36px;margin-bottom:8px;overflow:visible;color:var(--black);opacity:.5}
 .note-logo.logo-light{opacity:.72}
-.note-logo svg,.note-logo img{display:block;height:calc(var(--h) * .86);width:auto;max-width:100%;object-fit:contain}
+.note-logo svg,.note-logo img{display:block;height:calc(var(--h) * .86);width:auto;max-width:100%;object-fit:contain;object-position:center center;flex-shrink:0}
 .note-co{margin:0;font-family:var(--mono);font-weight:400;font-size:.75rem;line-height:1.5;letter-spacing:.12em;text-transform:uppercase;color:var(--charcoal)}
 .note-result{font-family:var(--display);font-weight:600;font-size:1.0625rem;line-height:1.3;letter-spacing:-.005em;color:var(--black);text-wrap:balance}
 @media (min-width:760px){
