@@ -171,7 +171,7 @@ ul,ol{padding:0;list-style:none}
 }
 
 /* Services preview */
-.service .num{font-family:var(--mono);font-size:.75rem;letter-spacing:.12em;color:var(--charcoal)}
+.service .num{font-family:var(--mono);font-size:.75rem;letter-spacing:.12em;color:var(--signal-teal)}
 .service p{color:var(--charcoal)}
 
 /* Close (dark) */
