@@ -53,7 +53,7 @@ ul,ol{padding:0;list-style:none}
 .site-header{position:sticky;top:0;z-index:10;background:var(--storm);color:var(--bone);border-bottom:1px solid var(--line-dark)}
 .site-header .wrap{display:grid;grid-template-columns:1fr;align-items:center;column-gap:16px}
 .brand{display:flex;align-items:center;height:var(--header);text-decoration:none}
-.brand .brand-lockup{display:block;height:44px;width:auto;max-width:100%;object-fit:contain;object-position:left center;flex:0 0 auto}
+.brand .brand-lockup{display:block;height:38px;width:auto;max-width:100%;object-fit:contain;object-position:left center;flex:0 0 auto}
 .nav{display:flex;gap:24px;align-items:center;height:44px;border-top:1px solid var(--line-dark)}
 .nav a{font-family:var(--mono);font-size:.6875rem;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;padding:6px 0;border-bottom:1px solid transparent}
 .nav a:hover{border-color:var(--accent-signal)}
@@ -89,22 +89,22 @@ ul,ol{padding:0;list-style:none}
 .signal-stack{position:absolute;top:0;left:var(--margin);right:var(--margin);bottom:0;pointer-events:none;z-index:1}
 .signal-stack .signal{position:absolute;display:block;top:auto;right:auto;bottom:auto;left:auto;transform:none;width:auto;height:auto;opacity:1;pointer-events:none}
 .signal-stack .signal-primary{top:50%;left:70%;transform:translate(-50%,-50%);width:min(72vw,540px);opacity:.95}
-.signal-stack .signal-behind{top:50%;left:22%;transform:translate(-50%,-50%);width:min(62vw,420px);opacity:.32}
+.signal-stack .signal-behind{top:43%;left:30%;transform:translate(-50%,-50%);width:min(62vw,420px);opacity:.2}
 .signal-stack .signal-behind .signal-pulse{animation-delay:1.6s;animation-duration:5.4s}
 
 /* Top-right bleed ring: direct child of .hero so it can extend past the
    content column and hero's overflow:hidden clips it at the viewport edge. */
-.hero > .signal-bleed{position:absolute;top:-80px;right:-130px;width:360px;opacity:.3;z-index:1;pointer-events:none}
+.hero > .signal-bleed{position:absolute;top:-80px;right:-130px;width:360px;opacity:.18;z-index:1;pointer-events:none}
 .hero > .signal-bleed .signal-pulse{animation-delay:2.9s;animation-duration:6.2s}
 
 @media (max-width:759px){
   .signal-stack .signal-primary{top:60%;left:62%;width:min(78vw,340px);opacity:.55}
-  .signal-stack .signal-behind{top:50%;left:30%;width:min(84vw,340px);opacity:.18}
+  .signal-stack .signal-behind{top:44%;left:30%;width:min(84vw,340px);opacity:.18}
   .hero > .signal-bleed{display:none}
 }
 @media (min-width:1200px){
   .signal-stack .signal-primary{width:min(52vw,640px);left:70%}
-  .signal-stack .signal-behind{width:min(44vw,500px);left:24%;opacity:.3}
+  .signal-stack .signal-behind{width:min(44vw,500px)}
   .hero > .signal-bleed{width:400px;top:-100px;right:-150px}
 }
 
@@ -258,7 +258,7 @@ ul,ol{padding:0;list-style:none}
 @media (min-width:900px){
   :root{--margin:48px;--header:76px}
   .site-header .wrap{grid-template-columns:auto 1fr;align-items:center}
-  .brand .brand-lockup{height:48px;max-width:none}
+  .brand .brand-lockup{height:42px;max-width:none}
   .nav{justify-self:end;border:0;height:auto;gap:36px}
   .nav a{font-size:.75rem}
   .hero-inner{padding-top:112px;padding-bottom:104px}
