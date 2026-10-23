@@ -160,16 +160,13 @@ ul,ol{padding:0;list-style:none}
   .notes{grid-template-columns:repeat(3,1fr)}
   .note-logo{height:42px}
   .note-logo svg,.note-logo img{height:var(--h)}
-  .note,.note:nth-child(n){min-height:148px;padding:32px 24px;border-top:0;border-left:1px solid var(--stone)}
+  .note,.note:nth-child(n){min-height:0;padding:32px 28px;border-top:0;border-left:1px solid var(--stone);justify-content:flex-start}
   .note:nth-child(3n+1){border-left:0}
   .note:nth-child(n+4){border-top:1px solid var(--stone)}
-  .note-result{min-height:2.6em}
 }
 @media (min-width:1400px){
-  .notes{grid-template-columns:repeat(5,1fr)}
-  .note,.note:nth-child(n){padding:24px 20px;border-top:0;border-left:1px solid var(--stone)}
-  .note:first-child{border-left:0}
-  .note-result{min-height:3.9em}
+  .notes{grid-template-columns:repeat(3,1fr)}
+  .note,.note:nth-child(n){padding:36px 32px}
 }
 
 /* Services preview */
