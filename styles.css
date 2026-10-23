@@ -149,7 +149,7 @@ ul,ol{padding:0;list-style:none}
 
 /* Field-note cards */
 .notes{display:grid;grid-template-columns:1fr}
-.note{display:flex;flex-direction:column;justify-content:flex-start;align-items:stretch;gap:8px;padding:24px 0}
+.note{display:flex;flex-direction:column;justify-content:flex-start;align-items:stretch;gap:18px;padding:24px 0}
 .note + .note{border-top:1px solid var(--stone)}
 .note-logo{display:flex;align-items:flex-end;justify-content:center;height:40px;margin:0;overflow:visible;color:var(--storm);opacity:.5}
 .note-logo.logo-light{opacity:.72}
