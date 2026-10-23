@@ -7,8 +7,8 @@
   /* Signal Teal: single-signal accent (one per screen, ~2% of layout).
      Text on teal is Storm Black. Replaces the retired Ember role. */
   --signal-teal:#018076;--accent-signal:var(--signal-teal);
-  /* Hero concentric-ring pigment. Trial burgundy; flip to #F5F1EA to revert. */
-  --signal-ring:#80142B;
+  /* Burgundy is pulse-only. Static dial rings / ticks / center stay bone. */
+  --signal-pulse-color:#80142B;
   --display:"Archivo","Helvetica Neue",Arial,sans-serif;
   --display-stretch:112%;
   --text:"Inter",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
@@ -53,7 +53,7 @@ ul,ol{padding:0;list-style:none}
 .site-header{position:sticky;top:0;z-index:10;background:var(--storm);color:var(--bone);border-bottom:1px solid var(--line-dark)}
 .site-header .wrap{display:grid;grid-template-columns:1fr;align-items:center;column-gap:16px}
 .brand{display:flex;align-items:center;height:var(--header);text-decoration:none}
-.brand .brand-lockup{display:block;height:44px;width:auto;flex:0 0 auto}
+.brand .brand-lockup{display:block;height:44px;width:auto;max-width:100%;object-fit:contain;object-position:left center;flex:0 0 auto}
 .nav{display:flex;gap:24px;align-items:center;height:44px;border-top:1px solid var(--line-dark)}
 .nav a{font-family:var(--mono);font-size:.6875rem;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;padding:6px 0;border-bottom:1px solid transparent}
 .nav a:hover{border-color:var(--accent-signal)}
@@ -73,8 +73,8 @@ ul,ol{padding:0;list-style:none}
 /* Base .signal rules kept for .page-signal on the contact page. The hero
    uses .signal-stack with multiple positioned .signal variants below. */
 .signal{display:block;position:absolute;z-index:1;right:-10%;top:50%;transform:translateY(-50%);width:min(90vw,560px);height:auto;pointer-events:none;opacity:.9}
-.signal-pulse{transform-box:fill-box;transform-origin:center;animation:signal-pulse 4.8s ease-out infinite}
-@keyframes signal-pulse{0%{transform:scale(1);opacity:.7}70%{transform:scale(4.6);opacity:0}100%{transform:scale(4.6);opacity:0}}
+.signal-pulse{transform-box:fill-box;transform-origin:center;animation:signal-pulse 4.8s ease-out infinite;stroke:var(--signal-pulse-color)}
+@keyframes signal-pulse{0%{transform:scale(1);opacity:.95}70%{transform:scale(4.6);opacity:0}100%{transform:scale(4.6);opacity:0}}
 .signal-dial{opacity:.55}
 .page-signal{opacity:.6;width:min(70vw,420px);right:-6%;top:52%}
 @media (max-width:759px){
@@ -96,13 +96,6 @@ ul,ol{padding:0;list-style:none}
    content column and hero's overflow:hidden clips it at the viewport edge. */
 .hero > .signal-bleed{position:absolute;top:-80px;right:-130px;width:360px;opacity:.3;z-index:1;pointer-events:none}
 .hero > .signal-bleed .signal-pulse{animation-delay:2.9s;animation-duration:6.2s}
-
-/* Pigment: all hero rings use --signal-ring. Overrides inline SVG stroke/fill.
-   Scope is strict so .page-signal on contact stays bone. */
-.signal-stack .signal [stroke],
-.hero > .signal-bleed [stroke]{stroke:var(--signal-ring)}
-.signal-stack .signal [fill]:not([fill="none"]),
-.hero > .signal-bleed [fill]:not([fill="none"]){fill:var(--signal-ring)}
 
 @media (max-width:759px){
   .signal-stack .signal-primary{top:60%;left:62%;width:min(78vw,340px);opacity:.55}
@@ -265,7 +258,7 @@ ul,ol{padding:0;list-style:none}
 @media (min-width:900px){
   :root{--margin:48px;--header:76px}
   .site-header .wrap{grid-template-columns:auto 1fr;align-items:center}
-  .brand .brand-lockup{height:60px}
+  .brand .brand-lockup{height:48px;max-width:none}
   .nav{justify-self:end;border:0;height:auto;gap:36px}
   .nav a{font-size:.75rem}
   .hero-inner{padding-top:112px;padding-bottom:104px}
