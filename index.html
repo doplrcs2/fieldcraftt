@@ -39,7 +39,18 @@
 
 <main id="main">
   <section class="hero" aria-labelledby="hero-title">
-    <svg class="signal" viewBox="0 0 600 600" preserveAspectRatio="xMidYMid meet" aria-hidden="true" focusable="false">
+    <div class="signal-stack" aria-hidden="true">
+    <svg class="signal signal-behind" viewBox="0 0 400 400" preserveAspectRatio="xMidYMid meet" aria-hidden="true" focusable="false">
+      <g fill="none" stroke="#F5F1EA" stroke-width="1">
+        <circle cx="200" cy="200" r="40"  opacity=".38"/>
+        <circle cx="200" cy="200" r="86"  opacity=".30"/>
+        <circle cx="200" cy="200" r="140" opacity=".22"/>
+        <circle cx="200" cy="200" r="198" opacity=".13"/>
+      </g>
+      <circle class="signal-pulse" cx="200" cy="200" r="40" fill="none" stroke="#F5F1EA" stroke-width="1.1" opacity=".55"/>
+      <circle cx="200" cy="200" r="2.5" fill="#F5F1EA"/>
+    </svg>
+    <svg class="signal signal-primary" viewBox="0 0 600 600" preserveAspectRatio="xMidYMid meet" aria-hidden="true" focusable="false">
       <g fill="none" stroke="#F5F1EA" stroke-width="1">
         <circle cx="300" cy="300" r="44"  opacity=".38"/>
         <circle cx="300" cy="300" r="92"  opacity=".30"/>
@@ -103,6 +114,17 @@
       </g>
       <circle cx="300" cy="300" r="3" fill="#F5F1EA"/>
     </svg>
+    </div>
+    <svg class="signal signal-bleed" viewBox="0 0 300 300" preserveAspectRatio="xMidYMid meet" aria-hidden="true" focusable="false">
+      <g fill="none" stroke="#F5F1EA" stroke-width="1">
+        <circle cx="150" cy="150" r="34"  opacity=".38"/>
+        <circle cx="150" cy="150" r="72"  opacity=".28"/>
+        <circle cx="150" cy="150" r="112" opacity=".2"/>
+        <circle cx="150" cy="150" r="148" opacity=".12"/>
+      </g>
+      <circle class="signal-pulse" cx="150" cy="150" r="34" fill="none" stroke="#F5F1EA" stroke-width="1" opacity=".55"/>
+      <circle cx="150" cy="150" r="2.5" fill="#F5F1EA"/>
+    </svg>
     <div class="wrap hero-inner">
       <h1 id="hero-title"><span>Tune.</span> <span>Dial.</span> <span>Build.</span></h1>
       <p class="positioning">Precision talent and executive search for <span class="nowrap">high-performing</span>, <span class="nowrap">mission-focused</span> teams and startups across the most competitive industries.</p>
@@ -132,7 +154,7 @@
           <figcaption class="label">Jimmy Chung · Founder &amp; Principal</figcaption>
         </figure>
         <div class="about-copy">
-          <h2 id="intro-title"><span>Dialed in from day one.</span> <span>Teams built to scale.</span></h2>
+          <h2 id="intro-title"><span>Dialed in from day one.</span> <span>Build to scale.</span></h2>
           <div class="bio">
             <p>Jimmy Chung is a tech talent leader and executive recruiter with 22 years of experience building and scaling software, hardware, and operations teams.</p>
             <p>Throughout his career, Jimmy has specialized in serving as the foundational first recruiter and talent builder for early-stage companies spanning Deep Tech (AI, Robotics) and Hard Tech (Aerospace, Defense). His record includes scaling early teams at iconic organizations from the ground up, including Apple and Tesla, as well as scaling early-stage companies through acquisition with Otto and an IPO with Aeva.</p>
@@ -141,8 +163,8 @@
           </div>
         </div>
       </div>
-      <div class="notes-block">
-        <h3 class="label notes-eyebrow">Field notes</h3>
+      <div class="notes-block" id="track-record">
+        <h3 class="label notes-eyebrow">Track record</h3>
         <div class="notes">
           <article class="note">
             <div class="note-logo"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" style="--h:34px"><path fill="currentColor" d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg></div>

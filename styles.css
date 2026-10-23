@@ -7,6 +7,8 @@
   /* Signal Teal: single-signal accent (one per screen, ~2% of layout).
      Text on teal is Storm Black. Replaces the retired Ember role. */
   --signal-teal:#018076;--accent-signal:var(--signal-teal);
+  /* Hero concentric-ring pigment. Trial burgundy; flip to #F5F1EA to revert. */
+  --signal-ring:#80142B;
   --display:"Archivo","Helvetica Neue",Arial,sans-serif;
   --display-stretch:112%;
   --text:"Inter",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
@@ -68,18 +70,49 @@ ul,ol{padding:0;list-style:none}
 .hero-cta:hover{background:var(--accent-signal);color:var(--storm);padding-left:12px;padding-right:12px;border-bottom-color:var(--accent-signal)}
 
 /* Signal motif: concentric rings + dial, slow pulse */
+/* Base .signal rules kept for .page-signal on the contact page. The hero
+   uses .signal-stack with multiple positioned .signal variants below. */
 .signal{display:block;position:absolute;z-index:1;right:-10%;top:50%;transform:translateY(-50%);width:min(90vw,560px);height:auto;pointer-events:none;opacity:.9}
 .signal-pulse{transform-box:fill-box;transform-origin:center;animation:signal-pulse 4.8s ease-out infinite}
 @keyframes signal-pulse{0%{transform:scale(1);opacity:.7}70%{transform:scale(4.6);opacity:0}100%{transform:scale(4.6);opacity:0}}
 .signal-dial{opacity:.55}
 .page-signal{opacity:.6;width:min(70vw,420px);right:-6%;top:52%}
 @media (max-width:759px){
-  .signal{right:-30%;top:62%;width:min(140vw,520px);opacity:.55}
   .page-signal{right:-24%;top:50%;width:min(110vw,420px);opacity:.4}
 }
 @media (min-width:1200px){
-  .signal{right:4%;top:50%;width:min(44vw,620px);opacity:1}
   .page-signal{right:4%;top:52%;width:min(32vw,460px);opacity:.75}
+}
+
+/* Hero signal stack: big primary on the right + medium behind-text ring on the left.
+   Stack is bounded by content column so neither bleeds past the right of the page. */
+.signal-stack{position:absolute;top:0;left:var(--margin);right:var(--margin);bottom:0;pointer-events:none;z-index:1}
+.signal-stack .signal{position:absolute;display:block;top:auto;right:auto;bottom:auto;left:auto;transform:none;width:auto;height:auto;opacity:1;pointer-events:none}
+.signal-stack .signal-primary{top:50%;left:70%;transform:translate(-50%,-50%);width:min(72vw,540px);opacity:.95}
+.signal-stack .signal-behind{top:50%;left:22%;transform:translate(-50%,-50%);width:min(62vw,420px);opacity:.32}
+.signal-stack .signal-behind .signal-pulse{animation-delay:1.6s;animation-duration:5.4s}
+
+/* Top-right bleed ring: direct child of .hero so it can extend past the
+   content column and hero's overflow:hidden clips it at the viewport edge. */
+.hero > .signal-bleed{position:absolute;top:-80px;right:-130px;width:360px;opacity:.3;z-index:1;pointer-events:none}
+.hero > .signal-bleed .signal-pulse{animation-delay:2.9s;animation-duration:6.2s}
+
+/* Pigment: all hero rings use --signal-ring. Overrides inline SVG stroke/fill.
+   Scope is strict so .page-signal on contact stays bone. */
+.signal-stack .signal [stroke],
+.hero > .signal-bleed [stroke]{stroke:var(--signal-ring)}
+.signal-stack .signal [fill]:not([fill="none"]),
+.hero > .signal-bleed [fill]:not([fill="none"]){fill:var(--signal-ring)}
+
+@media (max-width:759px){
+  .signal-stack .signal-primary{top:60%;left:62%;width:min(78vw,340px);opacity:.55}
+  .signal-stack .signal-behind{top:50%;left:30%;width:min(84vw,340px);opacity:.18}
+  .hero > .signal-bleed{display:none}
+}
+@media (min-width:1200px){
+  .signal-stack .signal-primary{width:min(52vw,640px);left:70%}
+  .signal-stack .signal-behind{width:min(44vw,500px);left:24%;opacity:.3}
+  .hero > .signal-bleed{width:400px;top:-100px;right:-150px}
 }
 
 /* Credentials strip */
@@ -100,7 +133,7 @@ ul,ol{padding:0;list-style:none}
 .nowrap{white-space:nowrap}
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
 
-/* Intro + field notes */
+/* Intro + track record */
 .about-grid{display:grid;gap:16px}
 .portrait{max-width:420px;display:flex;flex-direction:column;gap:32px}
 .portrait img{width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;background:var(--stone)}
