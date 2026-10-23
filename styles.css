@@ -51,7 +51,7 @@ ul,ol{padding:0;list-style:none}
 .site-header{position:sticky;top:0;z-index:10;background:var(--storm);color:var(--bone);border-bottom:1px solid var(--line-dark)}
 .site-header .wrap{display:grid;grid-template-columns:1fr;align-items:center;column-gap:16px}
 .brand{display:flex;align-items:center;height:var(--header);text-decoration:none}
-.brand .brand-lockup{display:block;height:38px;width:auto;flex:0 0 auto}
+.brand .brand-lockup{display:block;height:44px;width:auto;flex:0 0 auto}
 .nav{display:flex;gap:24px;align-items:center;height:44px;border-top:1px solid var(--line-dark)}
 .nav a{font-family:var(--mono);font-size:.6875rem;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;padding:6px 0;border-bottom:1px solid transparent}
 .nav a:hover{border-color:var(--accent-signal)}
@@ -232,7 +232,7 @@ ul,ol{padding:0;list-style:none}
 @media (min-width:900px){
   :root{--margin:48px;--header:76px}
   .site-header .wrap{grid-template-columns:auto 1fr;align-items:center}
-  .brand .brand-lockup{height:50px}
+  .brand .brand-lockup{height:60px}
   .nav{justify-self:end;border:0;height:auto;gap:36px}
   .nav a{font-size:.75rem}
   .hero-inner{padding-top:112px;padding-bottom:104px}
