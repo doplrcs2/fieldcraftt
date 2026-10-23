@@ -1,4 +1,5 @@
 @font-face{font-family:"Inter";src:url("assets/fonts/inter-400.woff2") format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:"Inter";src:url("assets/fonts/inter-500.woff2") format("woff2");font-weight:500;font-display:swap}
 @font-face{font-family:"Roboto Mono";src:url("assets/fonts/roboto-mono-400.woff2") format("woff2");font-weight:400;font-display:swap}
 
 :root{
@@ -153,7 +154,7 @@ ul,ol{padding:0;list-style:none}
 .note-logo.logo-light{opacity:.72}
 .note-logo svg,.note-logo img{display:block;height:calc(var(--h) * .86);width:auto;max-width:100%}
 .note-co{margin:0;font-family:var(--mono);font-weight:400;font-size:.75rem;line-height:1.5;letter-spacing:.12em;text-transform:uppercase;color:var(--charcoal)}
-.note-result{font-family:var(--display);font-weight:800;font-stretch:var(--display-stretch);font-size:1.0625rem;line-height:1.3;letter-spacing:-.005em;color:var(--storm);text-wrap:balance}
+.note-result{font-family:var(--text);font-weight:500;font-size:1.0625rem;line-height:1.3;letter-spacing:0;color:var(--storm);text-wrap:balance}
 @media (min-width:760px){
   .notes{grid-template-columns:repeat(3,1fr)}
   .note-logo{height:42px}
