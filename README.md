@@ -1,4 +1,4 @@
-# DialedPartners site
+# Dialed Partners site
 
 Static marketing site for [dialedpartners.com](https://dialedpartners.com).
 
