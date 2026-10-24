@@ -134,6 +134,7 @@ ul,ol{padding:0;list-style:none}
 /* Intro + notable accomplishments */
 .about-grid{display:grid;gap:32px}
 .portrait{max-width:420px;display:flex;flex-direction:column;gap:32px}
+.portrait-frame{width:100%}
 .portrait img{width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;background:var(--stone)}
 .about-copy h2{font-family:var(--display);font-weight:600;font-size:clamp(1.875rem,4.4vw,3.25rem);line-height:1.08;letter-spacing:-.015em}
 .about-copy h2 span{display:block}
@@ -276,7 +277,8 @@ ul,ol{padding:0;list-style:none}
   .close .wrap{padding-top:140px;padding-bottom:140px}
   .about-grid{grid-template-columns:minmax(0,5fr) minmax(0,7fr);grid-template-rows:auto auto;column-gap:clamp(24px,3.5vw,64px);row-gap:32px;align-items:stretch}
   .portrait{display:contents}
-  .portrait img{grid-column:1;grid-row:1;width:100%;height:0;min-height:100%;max-width:none;min-width:0;object-fit:cover;object-position:center top;aspect-ratio:auto}
+  .portrait-frame{grid-column:1;grid-row:1;width:100%;min-width:0;height:0;min-height:100%}
+  .portrait img{width:100%;height:100%;max-width:none;min-width:0;min-height:0;object-fit:cover;object-position:center top;aspect-ratio:auto}
   .portrait figcaption{grid-column:1;grid-row:2;min-width:0}
   .about-copy{grid-column:2;grid-row:1}
   .about-copy h2{margin-top:-.14em}
