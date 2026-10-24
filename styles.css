@@ -115,7 +115,7 @@ ul,ol{padding:0;list-style:none}
 /* Credentials strip */
 .creds{background:var(--bone);color:var(--storm);border-bottom:1px solid var(--stone)}
 .creds .wrap{padding-top:36px;padding-bottom:40px}
-.creds-label{margin:0 0 12px;font-family:var(--mono);font-weight:400;font-size:.6875rem;line-height:1.4;letter-spacing:.16em;text-transform:uppercase;text-align:center;color:var(--ash)}
+.creds-label{margin:0 0 var(--section-kicker-after);font-family:var(--mono);font-weight:400;font-size:.6875rem;line-height:1.4;letter-spacing:.16em;text-transform:uppercase;text-align:center;color:var(--ash)}
 .cred-row{display:grid;grid-template-columns:repeat(12,1fr);row-gap:14px;align-items:center;justify-items:center;text-align:center}
 .cred{grid-column:span 3;font-family:var(--display);font-weight:600;font-size:.875rem;line-height:1.3;letter-spacing:.06em;text-transform:uppercase;color:#6B6560;white-space:nowrap}
 .cred:nth-child(n+5){grid-column:span 6}
